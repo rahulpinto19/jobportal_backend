@@ -4,11 +4,16 @@ const port = 3001;
 app.use(express.json());
 const cors = require("cors");
 app.use(cors());
+
 const connectToMongo = require("./db");
 const upload = require("./routes/uploadjob");
 const fetchjob = require("./routes/fetchjobs");
 
 // Define a basic route
+app.get("/",(req,res)=>
+{
+  res.send({message:"working"})
+})
 app.use("/", upload);
 app.use("/", fetchjob);
 
