@@ -12,7 +12,7 @@ router.post("/upload", async (req, res) => {
   console.log(newJobData);
 
   try {
-    const newJob = new Job(newJobData);
+    const newJob = new Job(newJobData.jobData);
     const result = await newJob.save();
     console.log(result);
     res.status(200).send({ code: 200, message: "Job saved in the database", result });
