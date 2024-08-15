@@ -9,19 +9,24 @@ app.use(cors());
 
 // Route to fetch jobs
 router.get("/fetchjobs", async (req, res) => {
-  const { salary, location, jobType, title } = req.query.credentials;
+  const data = req.query;
+  const { minsalary, maxsalary, location, jobType, title } = data.credentials;
   const query = {};
   
-  if (salary) {
-    query.salary = { $lte: Number(salary) }; // Filter for salaries less than or equal to the provided value
+  if (maxsalary) {
+    query.maxsalary = { $lte: Number(maxsalary) * 1000 }; // Filter for salaries less than or equal to the provided value
+  }
+  if (minsalary) {
+    query.minsalary = { $gte: Number(minsalary) * 1000 };
   }
   if (location) query.location = location;
   if (jobType) query.jobType = jobType;
   if (title) query.jobTitle = { $regex: new RegExp(title, "i") }; // Case-insensitive title match
+  console.log(query);
 
   try {
     const results = await job.find(query);
-    console.log(results.length)
+    console.log(results.length);
 
     res.json(results); // Send the results as JSON
   } catch (err) {

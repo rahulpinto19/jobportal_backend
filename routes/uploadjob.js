@@ -14,12 +14,15 @@ router.post("/upload", async (req, res) => {
     const result = await newJob.save();
     console.log(result);
     if (result) {
+
       res.send({ code: 200, message: "job saved in the database" });
     } else {
-      res.send({ code: 200, message: "Technical issue" });
+      console.log(result)
+      res.send({ code: 200, message: "Technical issue",result:result });
     }
   } catch (err) {
-    res.send({ code: 200, message: "Technical issue" });
+    console.log(err)
+    res.send({ code: 200, message: "Technical issue",err:err });
   }
 });
 

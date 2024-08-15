@@ -16,14 +16,18 @@ const jobSchema = new mongoose.Schema(
     location: {
       type: String,
       required: true,
-      enum: ["Hyderabad", "Banglore", "Kolkata", "Delhi","Chennai"],
+      enum: ["Hyderabad", "Banglore", "Kolkata", "Delhi", "Chennai","Bangalore"],
     },
     jobType: {
       type: String,
-      enum: ["Full-time", "Part-time", "Internship", "Contract"], // Define the possible job types
+      enum: ["Full-time", "Part-time", "Internship", "Contract","Permanent"], // Define the possible job types
       required: true,
     },
-    salary: {
+    minsalary: {
+      type: Number,
+      required: true,
+    },
+    maxsalary: {
       type: Number,
       required: true,
     },
