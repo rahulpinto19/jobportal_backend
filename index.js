@@ -3,12 +3,13 @@ const app = express();
 const port = 3002;
 app.use(express.json());
 const cors = require("cors");
-app.use(cors({
-  origin: ['https://jobportal-kk6v.vercel.app'],
-  credentials: true,
-  sameSite: 'none'
-}));
 
+
+app.use(cors({
+    origin: ['https://jobportal-kk6v.vercel.app'],
+    credentials: true,
+    sameSite: 'none'
+}));
 const connectToMongo = require("./db");
 const upload = require("./routes/uploadjob");
 const fetchjob = require("./routes/fetchjobs");
